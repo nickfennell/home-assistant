@@ -1,0 +1,15 @@
+  - alias: Plug One
+    platform: mqtt
+    name: "PlugOne"
+    state_topic: "/sonoff/switch/plugone/relay/0"
+    command_topic: "/sonoff/switch/plugone/relay/0/set"
+    payload_on: "1"
+    payload_off: "0"
+    
+  - alias: Plug Two
+    platform: mqtt
+    name: "PlugTwo"
+    state_topic: "/sonoff/switch/plugtwo/relay/0"
+    command_topic: "/sonoff/switch/plugtwo/relay/0/set"
+    payload_on: "1"
+    payload_off: "0"

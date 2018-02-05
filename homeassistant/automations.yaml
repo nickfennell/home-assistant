@@ -1,0 +1,216 @@
+- action:
+  - data:
+      message: fensterpad has <10% battery remaining...
+    service: notify.ios_fenster214i7p
+  alias: '[Nick] FensterPad going flat'
+  condition:
+  - condition: state
+    entity_id: device_tracker.fensterpad
+    state: home
+  - condition: state
+    entity_id: device_tracker.fenster214i7p
+    state: home
+  id: '1517270518104'
+  trigger:
+  - below: '10'
+    entity_id: sensor.fensterpad_battery_level
+    platform: numeric_state
+- action:
+  - data:
+      data:
+        push:
+          badge: '0'
+          category: lights
+      message: Chillin is it..
+    service: notify.ios_fenster214i7p
+  alias: '[Nick] Still Up?'
+  condition:
+  - condition: state
+    entity_id: device_tracker.fenster214i7p
+    state: home
+  - condition: state
+    entity_id: media_player.lg_webos_smart_tv
+    state: playing
+  - condition: state
+    entity_id: light.sb005
+    state: 'on'
+  id: '1517275503040'
+  trigger:
+  - at: 01:30
+    platform: time
+- action:
+  - data:
+      entity_id: group.hallway
+    service: homeassistant.turn_off
+  alias: (Still Up?) Hall Lights Off
+  condition: []
+  id: '1517275668240'
+  trigger:
+  - event_data:
+      actionName: LIGHTS_OFF_HALL
+    event_type: ios.notification_action_fired
+    platform: event
+- action:
+  - data:
+      data:
+        icon: images/blue-lightbulb.png
+      message: Turned the Hall Lamp off!
+    service: notify.living_room_tv
+  - data:
+      entity_id: light.sb006
+    service: light.turn_off
+  alias: (Night Time) Hall Lamp Off
+  condition:
+  - condition: state
+    entity_id: media_player.lg_webos_smart_tv
+    state: playing
+  - condition: state
+    entity_id: light.sb006
+    state: 'on'
+  - condition: state
+    entity_id: device_tracker.mqttha_123123
+    state: home
+  - condition: state
+    entity_id: device_tracker.nicolas_iphone
+    state: home
+  id: '1517346332646'
+  trigger:
+  - at: 00:30:00
+    platform: time
+- action:
+  - data:
+      data:
+        push:
+          sound: US-EN-Morgan-Freeman-Welcome-Home.wav
+      message: Welcome Home :-)
+    service: notify.ios_fenster214i7p
+  alias: '[Nick] Welcome Home'
+  condition: []
+  id: '1517361433074'
+  trigger:
+  - entity_id: device_tracker.fenster214i7p
+    from: not_home
+    platform: state
+    to: home
+- action:
+  - data:
+      data:
+        push:
+          sound: US-EN-Alexa-Welcome-Home.wav
+      message: Welcome Home, Nicola!!
+    service: notify.ios_nicolas_iphone
+  - data:
+      message: Nicola's home.
+    service: notify.ios_fenster214i7p
+  alias: '[Nicola] Welcome Home'
+  condition: []
+  id: '1517361649026'
+  trigger:
+  - entity_id: device_tracker.nicolas_iphone
+    from: not_home
+    platform: state
+    to: home
+- action:
+  - data:
+      entity_id: light.sb1001
+    service: homeassistant.turn_off
+  - data:
+      entity_id: group.loungelights
+    service: homeassistant.turn_off
+  - data:
+      entity_id: group.hallway
+    service: homeassistant.turn_off
+  alias: (Still Up?) Leave the TV Lamp
+  condition: []
+  id: '1517362619047'
+  trigger:
+  - event_data:
+      actionName: LIGHTS_OFF_EXCL_TVLAMP
+    event_type: ios.notification_action_fired
+    platform: event
+- action:
+  - data:
+      data:
+        push:
+          badge: '0'
+          category: nicknothome
+      message: Nick isn't home and it's getting dark.. If you're back soon, did you
+        want some lights on?
+    service: notify.ios_nicolas_iphone
+  alias: '[Nicola] Nick not home..'
+  condition:
+  - condition: state
+    entity_id: device_tracker.fenster214i7p
+    state: not_home
+  - condition: state
+    entity_id: device_tracker.nicolas_iphone
+    state: not_home
+  id: '1517363648019'
+  trigger:
+  - event: sunset
+    offset: -01:00:00
+    platform: sun
+- action:
+  - data:
+      entity_id: light.sb006
+    service: light.turn_on
+  - data:
+      entity_id: light.sb005
+    service: light.turn_on
+  - data:
+      data:
+        icon: images/blue-lightbulb.png
+      message: (Dusk) Hall Lamp turned on.
+    service: notify.living_room_tv
+  alias: '(Dusk Routine) Hall & TV Lamps: On'
+  condition:
+  - condition: state
+    entity_id: light.sb006
+    state: 'off'
+  id: '1517365426595'
+  trigger:
+  - event: sunset
+    offset: -01:00:00
+    platform: sun
+- action:
+  - data:
+      entity_id: light.sb006
+    service: light.turn_on
+  alias: '(nicknothome) Hall Lamp: On'
+  condition:
+  - condition: state
+    entity_id: light.sb006
+    state: 'off'
+  id: '1517394863604'
+  trigger:
+  - event_data:
+      actionName: NNH_HALLLAMP_ON
+    event_type: ios.notification_action_fired
+    platform: event
+- action:
+  - data:
+      entity_id: light.sb006
+    service: light.turn_on
+  - data:
+      entity_id: light.sb005
+    service: light.turn_on
+  alias: '(nicknothome) Hall Lamp & TV Lamp: ON'
+  condition: []
+  id: '1517395032237'
+  trigger:
+  - event_data:
+      actionName: NNH_HALL_TVLAMP
+    event_type: ios.notification_action_fired
+    platform: event
+- action:
+  - data:
+      message: Nicola left the house
+    service: notify.ios_fenster214i7p
+  alias: '[Nick] Nicola left home'
+  condition: []
+  id: '1517407633418'
+  trigger:
+  - entity_id: device_tracker.nicolas_iphone
+    from: home
+    platform: state
+    to: not_home

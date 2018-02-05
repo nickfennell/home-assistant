@@ -1,0 +1,163 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 52.366275180891
+  longitude: -1.2314963786414
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 96
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/London
+  whitelist_external_dirs:
+    - /tmp
+    # Customization file
+  customize: !include customize.yaml
+  
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+hassio:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+#discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Sensor Platforms
+sensor:
+  - platform: yr
+  - platform: plex
+    host: dark.home
+  - platform: systemmonitor
+    resources:
+    - type: memory_use_percent
+    - type: processor_use
+    - type: last_boot
+    - type: disk_use_percent
+      arg: "/"
+    - type: disk_free
+      arg: "/"
+    - type: disk_use
+      arg: "/"
+    - type: memory_free
+    - type: load_1m
+    - type: load_5m
+    - type: load_15m
+    - type: network_in
+      arg: 'ens160'
+    - type: network_out
+      arg: 'ens160'
+    - type: packets_in
+      arg: 'ens160'
+    - type: packets_out
+      arg: 'ens160'
+    
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+# Begin Nick Fennell - 10/01/2018.@20:24
+light: !include lights.yaml
+switch: !include switches.yaml
+ios: !include ios.yaml
+zone: !include zones.yaml
+
+binary_sensor: !include binary_sensors.yaml
+shell_command: !include shell_commands.yaml
+intent_script: !include_dir_merge_named intent_scripts
+    
+mqtt:
+  broker: core-mosquitto
+  username: mqttha
+  password: mqttha
+
+device_tracker:
+   - platform: owntracks
+     max_gps_accuracy: 300
+#  - platform: tomato
+#    host: 192.168.10.1
+#    username: admin
+#    password: gizmoduck
+#    http_id: TIDec57683ec5c6605
+#    new_device_defaults:
+#      track_new_devices: False
+#      hide_if_away: False
+
+ffmpeg:
+
+media_player:
+  - platform: plex
+    entity_namespace: 'plex'
+    include_non_clients: true
+    scan_interval: 5
+    show_all_controls: false
+    use_custom_entity_ids: true
+    use_episode_art: true
+  - platform: sonos
+  - platform: webostv
+    host: 192.168.10.141
+    #turn_on_action:
+    #  service: wake_on_lan.send_magic_packet
+    #  data:
+    #    mac: 10-08-c1-b2-68-26
+
+notify:
+  - platform: webostv
+    host: 192.168.10.141
+    name: Living Room TV
+  
+camera:
+  - platform: ffmpeg
+    name: c01
+    user: admin
+    password: PPassword
+    input: rtsp://192.168.10.31:554/user=admin_password=vk2eIA6k_channel=1_stream=0.sdp?real_stream
+
+zoneminder:
+ - host: 192.168.10.250:80
+   path: /zm/
+   path_zms: /cgi-bin-zm/nph-zms
+   ssl: False

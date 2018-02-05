@@ -1,0 +1,21 @@
+####BINARY SENSORTS###
+
+# Is SkyQ On
+- platform: rest
+  resource: http://192.168.10.143:9006/as/system/information
+  method: GET
+  name: SkyQ Main
+  value_template: '{% if  value_json.activeStandby | lower  =="false" %} on {%-else %} off {%- endif %}'
+  scan_interval: 5
+
+# Is SkyQ On
+- platform: rest
+  resource: http://192.168.10.129:9006/as/system/information
+  method: GET
+  name: SkyQ Mini (Upstairs)
+  value_template: '{% if  value_json.activeStandby | lower  =="false" %} on {%-else %} off {%- endif %}'
+  scan_interval: 5
+
+- platform: ffmpeg_motion
+  reset: 10
+  input: rtsp://192.168.10.31:554/user=admin_password=vk2eIA6k_channel=1_stream=0.sdp?real_stream

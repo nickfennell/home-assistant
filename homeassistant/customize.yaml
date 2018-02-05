@@ -1,0 +1,73 @@
+group.all_automations:
+  hidden: false
+  friendly_name: Automations
+group.all_lights: {}
+group.all_switches:
+  hidden: false
+group.all_scripts:
+  friendly_name: Scripts
+light.biglight:
+  friendly_name: Big Light
+switch.plugtwo:
+  friendly_name: Plug Two
+light.tvlamp:
+  friendly_name: TV Lamp
+light.halllamp:
+  friendly_name: Hall Lamp
+  homebridge_hidden: 'false'
+  homebridge_name: HallLamp
+light.plugone: {}
+light.houselamp:
+  friendly_name: House Lamp
+device_tracker.fenster214i7p:
+  track_ios: 'false'
+device_tracker.nicolas_iphone:
+  friendly_name: Nicola
+light.sb1001:
+  friendly_name: Jackson's Big Light
+switch.sb003:
+  friendly_name: Small Lamp
+light.sb003:
+  friendly_name: House Lamp
+switch.sb002:
+  friendly_name: Tall Lamp
+light.sb002:
+  friendly_name: Tall Lamp
+light.sb005:
+  friendly_name: TV Lamp
+light.sb004:
+  friendly_name: Small Lamp
+  homebridge_name: small
+  homebridge_visible: 'true'
+light.st001:
+  friendly_name: Big Light
+light.sb006:
+  friendly_name: Hall Lamp
+group.lounge_lights:
+  order: 1
+zone.home:
+  friendly_name: Home
+  radius: 100
+device_tracker.mqttha_123123:
+  friendly_name: Nick
+zone.mqttha_123123__thehome:
+  friendly_name: TheHome
+group.lounge: {}
+group.jacksonsroom: {}
+light.sb001:
+  hidden: true
+sensor.sent_ens160:
+  icon: mdi:arrow-up-bold-circle-outline
+sensor.received_ens160:
+  icon: mdi:arrow-down-bold-circle-outline
+sensor.packets_received_ens160:
+  icon: mdi:download-network
+sensor.packets_sent_ens160:
+  icon: mdi:upload-network
+group.host_performance_group:
+  order: 1
+group.host_network_overview:
+  order: 2
+group.host_overview_view: {}
+group.host_drives_group:
+  order: 3

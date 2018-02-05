@@ -1,0 +1,76 @@
+  - alias: Jacksons Big Light
+    platform: mqtt
+    name: "sb1001"
+    state_topic: "/sonoff/lights/upstairs/sb1001/relay/0"
+    command_topic: "/sonoff/lights/upstairs/sb1001/relay/0/set"
+    payload_on: 1
+    payload_off: 0
+    rgb_state_topic: "/sonoff/lights/upstairs/sb1001/rgb"
+    rgb_command_topic: "/sonoff/lights/upstairs/sb1001/rgb/set"
+    rgb: true
+    optimistic: false
+    color_temp: true
+    color_temp_command_topic: "/sonoff/lights/upstairs/sb1001/mired/set"
+    brightness: true
+    brightness_command_topic: "/sonoff/lights/upstairs/sb1001/brightness/set"
+    brightness_state_topic: "/sonoff/lights/upstairs/sb1001/brightness"
+    white_value: true
+    white_value_command_topic: "/sonoff/lights/upstairs/sb1001/channel/4/set"
+    white_value_state_topic: "/sonoff/lights/upstairs/sb1001/channel/4"
+
+  - alias: sb001
+    platform: mqtt
+    name: "sb001"
+    state_topic: "/sonoff/lights/downstairs/sb001/relay/0"
+    command_topic: "/sonoff/lights/downstairs/sb001/relay/0/set"
+    payload_on: "1"
+    payload_off: "0"
+
+  - alias: Tall Lamp
+    platform: mqtt
+    name: "sb002"
+    state_topic: "/sonoff/lights/downstairs/sb002/relay/0"
+    command_topic: "/sonoff/lights/downstairs/sb002/relay/0/set"
+    payload_on: "1"
+    payload_off: "0"
+    
+  - alias: House Lamp
+    platform: mqtt
+    name: "sb003"
+    state_topic: "/sonoff/lights/downstairs/sb003/relay/0"
+    command_topic: "/sonoff/lights/downstairs/sb003/relay/0/set"
+    payload_on: "1"
+    payload_off: "0"
+    
+  - alias: Small Lamp
+    platform: mqtt
+    name: "sb004"
+    state_topic: "/sonoff/lights/downstairs/sb004/relay/0"
+    command_topic: "/sonoff/lights/downstairs/sb004/relay/0/set"
+    payload_on: "1"
+    payload_off: "0"
+    
+  - alias: TV Lamp
+    platform: mqtt
+    name: "sb005"
+    state_topic: "/sonoff/lights/downstairs/sb005/relay/0"
+    command_topic: "/sonoff/lights/downstairs/sb005/relay/0/set"
+    payload_on: "1"
+    payload_off: "0"
+    
+  - alias: Hall Lamp
+    platform: mqtt
+    name: "sb006"
+    state_topic: "/sonoff/lights/downstairs/sb006/relay/0"
+    command_topic: "/sonoff/lights/downstairs/sb006/relay/0/set"
+    payload_on: "1"
+    payload_off: "0"
+
+  - alias: Big Light
+    platform: mqtt
+    name: "st001"
+    friendly_name: "Big Light"
+    state_topic: "/sonoff/lights/downstairs/st001/relay/0"
+    command_topic: "/sonoff/lights/downstairs/st001/relay/0/set"
+    payload_on: "1"
+    payload_off: "0"

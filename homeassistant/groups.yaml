@@ -1,0 +1,139 @@
+  default_view:
+    view: yes
+    name: home
+    icon: mdi:home
+    entities:
+      - group.lounge_lights
+      - group.hallway
+      - group.jacksonsroom
+        
+  devices:
+    name: Devices
+    view: yes
+    entities:
+        - group.device_locations
+        - group.device_power
+        - group.device_locations
+        - media_player.nick
+        - media_player.lg_webos_smart_tv
+        - binary_sensor.skyq_main
+        - binary_sensor.skyq_mini_upstairs
+  
+  device_locations:
+    name: Device Locations
+    entities:
+        - device_tracker.fensterpad
+        - device_tracker.fenster214i7p
+        - device_tracker.nicolas_iphone
+        
+  device_power:
+    name: Device Power
+    entities:
+        - sensor.fenster214i7p_battery_level
+        - sensor.fenster214i7p_battery_state
+        - sensor.fensterpad_battery_level
+        - sensor.fensterpad_battery_state
+        - sensor.nicolas_iphone_battery_level
+        - sensor.nicolas_iphone_battery_state
+        
+  rooms:
+    control: hidden
+    name: Rooms
+    view: yes
+    entities:
+        - group.lounge
+        - group.hallway
+        - group.jacksonsroom
+        - group.nicksroom
+        
+  upstairs:
+    name: Upstairs
+    view: yes
+    entities:
+      - group.jacksonsroom
+      - group.nicksroom
+      
+## DEVICE GROUPS ##
+  lounge_lights:
+    name: Lounge Lights
+    entities:
+    # - light.sb001 # Spare
+      - light.st001 # Big Light
+      - light.sb003 # House Lamp
+      - light.sb004 # Small Lamp
+      - light.sb002 # Tall Lamp
+      - light.sb005 # TV Lamp
+  hallway:
+    name: The Hall
+    entities:
+      - light.sb006
+      
+  people:
+    name: People 
+    view: no
+    entities:
+      - device_tracker.mqttha_123123
+      - device_tracker.nicolas_iphone
+        
+  lounge:
+    name: The Lounge
+    control: hidden
+    entities:
+      - light.sb001 # Spare
+      - light.sb002 # Tall Lamp
+      - light.sb003 # Small Lamp
+      - light.sb004 # House Lamp
+      - light.sb005 # TV Lamp
+      - light.sb006 # Hall Lamp
+      - light.st001 # Big Light
+      - media_player.lg_webos_smart_tv
+      
+  jacksonsroom:
+    name: Jacksons Room
+    entities:
+        - light.sb1001 # Sonoff B1
+        
+  nicksroom:
+    name: Nicks Room
+    entities:
+        - switch.plugtwo # iTead s20
+        - media_player.nick
+
+  host_overview_view:
+    name: Host Overview
+    view: yes
+    icon: mdi:desktop-classic
+    entities:
+      - group.host_network_overview
+      - group.host_drives_group
+      - group.host_performance_group
+      - sensor.average_load_1m
+      - sensor.average_load_5m
+      - sensor.average_load_15m
+      - group.all_automations
+      #- group.all_lights
+      - group.all_scripts
+      #- group.all_switches
+  
+  host_drives_group:
+    name: Host Drives
+    entities:
+      - sensor.disk_used_
+      - sensor.disk_used__2
+      - sensor.disk_free_
+        
+  host_network_overview:
+    name: Host Network
+    entities:
+      - sensor.sent_ens160
+      - sensor.received_ens160
+      - sensor.packets_sent_ens160
+      - sensor.packets_received_ens160
+      
+  host_performance_group:
+     name: Host Performance
+     entities:
+      - sensor.cpu_used
+      - sensor.ram_used
+      - sensor.ram_available
+      - sensor.last_boot

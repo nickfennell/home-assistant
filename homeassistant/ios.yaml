@@ -1,0 +1,44 @@
+push:
+    categories:
+    - name: Lights Off
+      identifier: 'Lights'
+      actions:
+        - identifier: 'LIGHTS_OFF_HALL'
+          title: 'Hall Lights Off'
+          activationMode: 'background'
+          authenticationRequired: yes
+          destructive: yes
+          behavior: 'default'
+        - identifier: 'LIGHTS_OFF_EXCL_TVLAMP'
+          title: 'Leave the TV Lamp.'
+          activationMode: 'background'
+          authenticationRequired: yes
+          destructive: yes
+          behavior: 'default'
+        - identifier: 'DISMISS'
+          title: "I'm Good."
+          activationMode: 'background'
+          authenticationRequired: yes
+          destructive: no
+          behavior: 'default'
+    - name: Nick not home
+      identifier: 'nicknothome'
+      actions:
+        - identifier: 'NNH_HALLLAMP_ON'
+          title: 'Hall Lamp'
+          activationMode: 'background'
+          authenticationRequired: yes
+          destructive: yes
+          behavior: 'default'
+        - identifier: 'NNH_HALL_TVLAMP'
+          title: 'Hall and TV Lamp'
+          activationMode: 'background'
+          authenticationRequired: yes
+          destructive: yes
+          behavior: 'default'
+        - identifier: 'DISMISS'
+          title: "I'm Good."
+          activationMode: 'background'
+          authenticationRequired: yes
+          destructive: no
+          behavior: 'default'

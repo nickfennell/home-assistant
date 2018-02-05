@@ -1,0 +1,63 @@
+sonos_say:
+  alias: Sonos TTS script
+  sequence:
+  - data:
+      entity_id: media_player.nick
+    data_template:
+      entity_id: '{{ sonos_entity }}'
+    service: media_player.sonos_snapshot
+  - data:
+      entity_id: media_player.nick
+    data_template:
+      entity_id: '{{ sonos_entity }}'
+    service: media_player.sonos_unjoin
+  - data_template:
+      entity_id: '{{ sonos_entity }}'
+      volume_level: '{{ volume }}'
+    service: media_player.volume_set
+  - data:
+      message: test message is now playing
+    data_template:
+      entity_id: '{{ sonos_entity }}'
+      message: '{{ message }}'
+    service: tts.google_say
+  - wait_template: '{{ "states.media_player.nick.state" == ''paused'' }}'
+  - data:
+      entity_id: media_player.nick
+    data_template:
+      entity_id: '{{ sonos_entity }}'
+    service: media_player.sonos_restore
+'15173392644412':
+  alias: Test TV Notification (LG Smart TV)
+  sequence:
+  - data:
+      data:
+        icon: images/sign.jpeg
+      message: Test
+    service: notify.living_room_tv
+'1517351928959':
+  alias: Flash Lights
+  sequence:
+  - alias: ''
+    data:
+      entity_id: light.sb1001
+    service: light.turn_on
+  - delay: 'seconds: 1'
+  - data:
+      entity_id: light.sb1001
+    service: light.turn_off
+  - delay: 'seconds: 1'
+  - data:
+      entity_id: script.1517351928959
+    service: script.turn_on
+'1517360546558':
+  alias: Sound test
+  sequence:
+  - data: {}
+    service: notify.ios_fenster214i7p
+'1517364892146':
+  alias: Test IOS Notify (fenster214i7p)
+  sequence:
+  - data:
+      message: Testing the IOS Notify system.
+    service: notify.ios_fenster214i7p

@@ -1,0 +1,8 @@
+power_skyq: /config/shellcommand/skyqcommand.sh {{command}}
+
+get_skyq_state: /config/shellcommand/get_skyq_state.py
+
+skyq_command: /config/shellcommand/skyqcommand.sh {{command}}
+
+##TEST###
+test: /config/shellcommand/mktext.sh

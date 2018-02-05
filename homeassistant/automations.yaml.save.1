@@ -1,0 +1,42 @@
+- alias: test
+  trigger:
+  - platform: state
+    entity_id: input_boolean.mytest
+  action:
+  - service: script.sonos_say
+    data:
+      sonos_entity: media_player.nick
+      message: test message is now playing
+- action:
+  - data:
+      entity_id: media_player.nick
+    service: media_player.sonos_snapshot
+  - data:
+      entity_id: media_player.nick
+    service: media_player.sonos_unjoin
+  - data:
+      message: The Sonos Speak Sonos script is working great!
+    service: tts.google_say
+  - wait_template: states.media_player.nick == 'paused'
+  - data:
+      entity_id: media_player.nick
+    service: media_player.sonos_restore
+  alias: Speak Sonos Speak
+  condition: []
+  id: '1517142717242'
+  trigger: []
+- action:
+  - alias: ''
+    data:
+      message: Something happened at home!
+    service: notify.ios_fenster214i7p
+
+
+  alias: Sound the alarm!
+  condition: []
+  id: '1517264524303'
+  trigger:
+  - event_data:
+      actionName: SOUND_ALARM
+    event_type: ios.notification_action_fired
+    platform: event

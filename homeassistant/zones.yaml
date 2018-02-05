@@ -1,0 +1,26 @@
+###  Zones  ###
+# - name: Home
+#   latitude: 52.3661099117224
+#   longitude: -1.2317424606624467
+#   radius: 10
+#   icon: mdi:home
+  
+ - name: Nicky's Parents
+   latitude: 52.344499139220396 
+   longitude: -1.0823092006659858
+   radius: 10
+   icon: mdi:home
+   
+ - name: Nick'y Grandparents 
+   latitude: 52.342208900330505
+   longitude: -1.1364265183333255
+   radius: 5
+   icon: mdi:home
+
+ - name: OT Home
+   #hidden: true
+   latitude: 52.366275180891
+   longitude: -1.2314963786414
+   radius: 100
+   friendly_name: TheHome
+   icon: mdi:import
